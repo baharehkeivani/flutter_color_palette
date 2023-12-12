@@ -3,7 +3,6 @@
 /// Try to create a Color Picker with other layout on your own :)
 
 import 'dart:math';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +42,6 @@ enum ColorLabelType { hex, rgb, hsv, hsl }
 
 /// Types for slider picker widget.
 enum ColorModel { rgb, hsv, hsl }
-// enum ColorSpace { rgb, hsv, hsl, hsp, okhsv, okhsl, xyz, yuv, lab, lch, cmyk }
 
 /// Painter for SV mixture.
 class HSVWithHueColorPainter extends CustomPainter {
@@ -66,7 +64,8 @@ class HSVWithHueColorPainter extends CustomPainter {
         HSVColor.fromAHSV(1.0, hsvColor.hue, 1.0, 1.0).toColor(),
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientV.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientV.createShader(rect));
     canvas.drawRect(
       rect,
       Paint()
@@ -117,8 +116,10 @@ class HSVWithSaturationColorPainter extends CustomPainter {
       HSVColor.fromAHSV(1.0, 360.0, hsvColor.saturation, 1.0).toColor(),
     ];
     final Gradient gradientH = LinearGradient(colors: colors);
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
-    canvas.drawRect(rect, Paint()..shader = gradientV.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientV.createShader(rect));
 
     canvas.drawCircle(
       Offset(
@@ -165,11 +166,14 @@ class HSVWithValueColorPainter extends CustomPainter {
       const HSVColor.fromAHSV(1.0, 360.0, 1.0, 1.0).toColor(),
     ];
     final Gradient gradientH = LinearGradient(colors: colors);
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
-    canvas.drawRect(rect, Paint()..shader = gradientV.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientV.createShader(rect));
     canvas.drawRect(
       rect,
-      Paint()..color = Colors.black.withOpacity(1 - hsvColor.value),
+      Paint()
+        ..color = Colors.black.withOpacity(1 - hsvColor.value),
     );
 
     canvas.drawCircle(
@@ -219,8 +223,10 @@ class HSLWithHueColorPainter extends CustomPainter {
         Colors.black,
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
-    canvas.drawRect(rect, Paint()..shader = gradientV.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientV.createShader(rect));
 
     canvas.drawCircle(
       Offset(size.width * hslColor.saturation,
@@ -271,8 +277,10 @@ class HSLWithSaturationColorPainter extends CustomPainter {
         Colors.black,
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
-    canvas.drawRect(rect, Paint()..shader = gradientV.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientV.createShader(rect));
 
     canvas.drawCircle(
       Offset(size.width * hslColor.hue / 360,
@@ -320,13 +328,15 @@ class HSLWithLightnessColorPainter extends CustomPainter {
         Color(0xFF808080),
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
-    canvas.drawRect(rect, Paint()..shader = gradientV.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientV.createShader(rect));
     canvas.drawRect(
       rect,
       Paint()
         ..color =
-            Colors.black.withOpacity((1 - hslColor.lightness * 2).clamp(0, 1)),
+        Colors.black.withOpacity((1 - hslColor.lightness * 2).clamp(0, 1)),
     );
     canvas.drawRect(
       rect,
@@ -377,7 +387,8 @@ class RGBWithRedColorPainter extends CustomPainter {
         Color.fromRGBO(color.red, 0, 255, 1.0),
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
     canvas.drawRect(
       rect,
       Paint()
@@ -425,7 +436,8 @@ class RGBWithGreenColorPainter extends CustomPainter {
         Color.fromRGBO(0, color.green, 255, 1.0),
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
     canvas.drawRect(
       rect,
       Paint()
@@ -473,7 +485,8 @@ class RGBWithBlueColorPainter extends CustomPainter {
         Color.fromRGBO(255, 0, color.blue, 1.0),
       ],
     );
-    canvas.drawRect(rect, Paint()..shader = gradientH.createShader(rect));
+    canvas.drawRect(rect, Paint()
+      ..shader = gradientH.createShader(rect));
     canvas.drawRect(
       rect,
       Paint()
@@ -527,11 +540,14 @@ class HUEColorWheelPainter extends CustomPainter {
       ],
     );
     canvas.drawCircle(
-        center, radio, Paint()..shader = gradientS.createShader(rect));
+        center, radio, Paint()
+      ..shader = gradientS.createShader(rect));
     canvas.drawCircle(
-        center, radio, Paint()..shader = gradientR.createShader(rect));
+        center, radio, Paint()
+      ..shader = gradientR.createShader(rect));
     canvas.drawCircle(center, radio,
-        Paint()..color = Colors.black.withOpacity(1 - hsvColor.value));
+        Paint()
+          ..color = Colors.black.withOpacity(1 - hsvColor.value));
 
     canvas.drawCircle(
       Offset(
@@ -593,7 +609,8 @@ class HueRingPainter extends CustomPainter {
       center.dy - radio * sin((hsvColor.hue * pi / 180)),
     );
     canvas.drawShadow(
-        Path()..addOval(Rect.fromCircle(center: offset, radius: 12)),
+        Path()
+          ..addOval(Rect.fromCircle(center: offset, radius: 12)),
         Colors.black,
         3.0,
         true);
@@ -662,8 +679,10 @@ class TrackPainter extends CustomPainter {
     final Rect rect = Offset.zero & size;
     if (trackType == TrackType.alpha) {
       final Size chessSize = Size(size.height / 2, size.height / 2);
-      Paint chessPaintB = Paint()..color = const Color(0xffcccccc);
-      Paint chessPaintW = Paint()..color = Colors.white;
+      Paint chessPaintB = Paint()
+        ..color = const Color(0xffcccccc);
+      Paint chessPaintW = Paint()
+        ..color = Colors.white;
       List.generate((size.height / chessSize.height).round(), (int y) {
         List.generate((size.width / chessSize.width).round(), (int x) {
           canvas.drawRect(
@@ -686,7 +705,8 @@ class TrackPainter extends CustomPainter {
           const HSVColor.fromAHSV(1.0, 360.0, 1.0, 1.0).toColor(),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.saturation:
         final List<Color> colors = [
@@ -694,7 +714,8 @@ class TrackPainter extends CustomPainter {
           HSVColor.fromAHSV(1.0, hsvColor.hue, 1.0, 1.0).toColor(),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.saturationForHSL:
         final List<Color> colors = [
@@ -702,7 +723,8 @@ class TrackPainter extends CustomPainter {
           HSLColor.fromAHSL(1.0, hsvColor.hue, 1.0, 0.5).toColor(),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.value:
         final List<Color> colors = [
@@ -710,7 +732,8 @@ class TrackPainter extends CustomPainter {
           HSVColor.fromAHSV(1.0, hsvColor.hue, 1.0, 1.0).toColor(),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.lightness:
         final List<Color> colors = [
@@ -719,7 +742,8 @@ class TrackPainter extends CustomPainter {
           HSLColor.fromAHSL(1.0, hsvColor.hue, 1.0, 1.0).toColor(),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.red:
         final List<Color> colors = [
@@ -727,7 +751,8 @@ class TrackPainter extends CustomPainter {
           hsvColor.toColor().withRed(255).withOpacity(1.0),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.green:
         final List<Color> colors = [
@@ -735,7 +760,8 @@ class TrackPainter extends CustomPainter {
           hsvColor.toColor().withGreen(255).withOpacity(1.0),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.blue:
         final List<Color> colors = [
@@ -743,7 +769,8 @@ class TrackPainter extends CustomPainter {
           hsvColor.toColor().withBlue(255).withOpacity(1.0),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
       case TrackType.alpha:
         final List<Color> colors = [
@@ -751,7 +778,8 @@ class TrackPainter extends CustomPainter {
           hsvColor.toColor().withOpacity(1.0),
         ];
         Gradient gradient = LinearGradient(colors: colors);
-        canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
+        canvas.drawRect(rect, Paint()
+          ..shader = gradient.createShader(rect));
         break;
     }
   }
@@ -808,8 +836,10 @@ class IndicatorPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Size chessSize = Size(size.width / 10, size.height / 10);
-    final Paint chessPaintB = Paint()..color = const Color(0xFFCCCCCC);
-    final Paint chessPaintW = Paint()..color = Colors.white;
+    final Paint chessPaintB = Paint()
+      ..color = const Color(0xFFCCCCCC);
+    final Paint chessPaintW = Paint()
+      ..color = Colors.white;
     List.generate((size.height / chessSize.height).round(), (int y) {
       List.generate((size.width / chessSize.width).round(), (int x) {
         canvas.drawRect(
@@ -838,8 +868,10 @@ class CheckerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Size chessSize = Size(size.height / 6, size.height / 6);
-    Paint chessPaintB = Paint()..color = const Color(0xffcccccc);
-    Paint chessPaintW = Paint()..color = Colors.white;
+    Paint chessPaintB = Paint()
+      ..color = const Color(0xffcccccc);
+    Paint chessPaintW = Paint()
+      ..color = Colors.white;
     List.generate((size.height / chessSize.height).round(), (int y) {
       List.generate((size.width / chessSize.width).round(), (int x) {
         canvas.drawRect(
@@ -856,19 +888,19 @@ class CheckerPainter extends CustomPainter {
 
 /// Provide label for color information.
 class ColorPickerLabel extends StatefulWidget {
-  const ColorPickerLabel(
-    this.hsvColor,
-    this.onColorChanged, {
-    Key? key,
-    this.enableAlpha = true,
-    this.colorLabelTypes = const [
-      ColorLabelType.rgb,
-      ColorLabelType.hsv,
-      ColorLabelType.hsl
-    ],
-    this.textStyle,
-    this.disabled = false,
-  })  : assert(colorLabelTypes.length > 0),
+  const ColorPickerLabel(this.hsvColor,
+      this.onColorChanged, {
+        Key? key,
+        this.enableAlpha = true,
+        this.colorLabelTypes = const [
+          ColorLabelType.rgb,
+          ColorLabelType.hsv,
+          ColorLabelType.hsl
+        ],
+        this.textStyle,
+        this.disabled = false,
+      })
+      : assert(colorLabelTypes.length > 0),
         super(key: key);
 
   final HSVColor hsvColor;
@@ -1021,16 +1053,16 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
         break;
       case ColorLabelType.hsv:
         color = HSVColor.fromAHSV(a.toDouble() / 100, h.toDouble(),
-                s.toDouble() / 100, v.toDouble() / 100)
+            s.toDouble() / 100, v.toDouble() / 100)
             .toColor();
         break;
       case ColorLabelType.hsl:
         color = HSLColor.fromAHSL(a.toDouble() / 100, h.toDouble(),
-                s.toDouble() / 100, l.toDouble() / 100)
+            s.toDouble() / 100, l.toDouble() / 100)
             .toColor();
         break;
       case ColorLabelType.hex:
-        // Handle Hex case if needed
+      // Handle Hex case if needed
         break;
     }
 
@@ -1046,14 +1078,20 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
     List<Widget> widgets = [];
     List<TextEditingController> controllers = List.generate(
         4,
-        (index) => TextEditingController()
+            (index) =>
+        TextEditingController()
           ..text = colorValue(widget.hsvColor, _colorType)[index]);
+    List<FocusNode> focusNodes = List.generate(
+        4, (index) => FocusNode());
 
     for (String item in _colorTypes[_colorType] ?? []) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        controllers[_colorTypes[_colorType]!.indexOf(item)].selection = TextSelection.fromPosition(
-          TextPosition(offset: controllers[_colorTypes[_colorType]!.indexOf(item)].text.length),
-        );
+        controllers[_colorTypes[_colorType]!.indexOf(item)].selection =
+            TextSelection.fromPosition(
+              TextPosition(
+                  offset: controllers[_colorTypes[_colorType]!.indexOf(item)]
+                      .text.length),
+            );
       });
       if (widget.enableAlpha || item != 'A') {
         widgets.add(Padding(
@@ -1068,9 +1106,13 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
                     Text(
                       item,
                       style: widget.textStyle ??
-                          Theme.of(context).textTheme.bodyLarge,
+                          Theme
+                              .of(context)
+                              .textTheme
+                              .bodyLarge,
                     ),
                     TextField(
+                      focusNode:focusNodes[_colorTypes[_colorType]!.indexOf(item)],
                       enabled: !widget.disabled,
                       decoration: const InputDecoration(
                         isDense: true,
@@ -1086,11 +1128,14 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
                           const TextStyle(color: Colors.black),
                       textAlign: TextAlign.center,
                       controller:
-                          controllers[_colorTypes[_colorType]!.indexOf(item)],
+                      controllers[_colorTypes[_colorType]!.indexOf(item)],
                       onChanged: (String value) {
                         if (value.isEmpty) return;
                         int intValue = int.parse(value);
                         _updateColor(item, intValue);
+                      },
+                      onTapOutside: (event) {
+                        focusNodes[_colorTypes[_colorType]!.indexOf(item)].unfocus();
                       },
                     ),
                   ],
@@ -1123,7 +1168,8 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
       case "B":
         return RegExp(r'^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$');
       case "H":
-        return RegExp(r'^(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-9]{2}|3[0-5][0-9]|359)$');
+        return RegExp(
+            r'^(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-9]{2}|3[0-5][0-9]|359)$');
       case "S":
       case "V":
       case "L":
@@ -1146,7 +1192,11 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
           for (ColorLabelType type in widget.colorLabelTypes)
             DropdownMenuItem(
               value: type,
-              child: Text(type.toString().split('.').last.toUpperCase()),
+              child: Text(type
+                  .toString()
+                  .split('.')
+                  .last
+                  .toUpperCase()),
             )
         ],
       ),
@@ -1158,14 +1208,13 @@ class ColorPickerLabelState extends State<ColorPickerLabel> {
 
 /// Provide hex input wiget for 3/6/8 digits.
 class ColorPickerInput extends StatefulWidget {
-  const ColorPickerInput(
-    this.color,
-    this.onColorChanged, {
-    Key? key,
-    this.enableAlpha = true,
-    this.embeddedText = false,
-    this.disable = false,
-  }) : super(key: key);
+  const ColorPickerInput(this.color,
+      this.onColorChanged, {
+        Key? key,
+        this.enableAlpha = true,
+        this.embeddedText = false,
+        this.disable = false,
+      }) : super(key: key);
 
   final Color color;
   final ValueChanged<Color> onColorChanged;
@@ -1180,6 +1229,7 @@ class ColorPickerInput extends StatefulWidget {
 class ColorPickerInputState extends State<ColorPickerInput> {
   TextEditingController textEditingController = TextEditingController();
   int inputColor = 0;
+  FocusNode focusNode = FocusNode();
 
   @override
   void dispose() {
@@ -1191,17 +1241,30 @@ class ColorPickerInputState extends State<ColorPickerInput> {
   Widget build(BuildContext context) {
     if (inputColor != widget.color.value) {
       textEditingController.text =
-          '#${widget.color.red.toRadixString(16).toUpperCase().padLeft(2, '0')}${widget.color.green.toRadixString(16).toUpperCase().padLeft(2, '0')}${widget.color.blue.toRadixString(16).toUpperCase().padLeft(2, '0')}${widget.enableAlpha ? widget.color.alpha.toRadixString(16).toUpperCase().padLeft(2, '0') : ''}';
+      '#${widget.color.red.toRadixString(16).toUpperCase().padLeft(
+          2, '0')}${widget.color.green.toRadixString(16).toUpperCase().padLeft(
+          2, '0')}${widget.color.blue.toRadixString(16).toUpperCase().padLeft(
+          2, '0')}${widget.enableAlpha ? widget.color.alpha.toRadixString(16)
+          .toUpperCase()
+          .padLeft(2, '0') : ''}';
     }
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         if (!widget.embeddedText)
-          Text('Hex', style: Theme.of(context).textTheme.bodyLarge),
+          Text('Hex', style: Theme
+              .of(context)
+              .textTheme
+              .bodyLarge),
         const SizedBox(width: 10),
         SizedBox(
-          width: (Theme.of(context).textTheme.bodyMedium?.fontSize ?? 14) * 10,
+          width: (Theme
+              .of(context)
+              .textTheme
+              .bodyMedium
+              ?.fontSize ?? 14) * 10,
           child: TextField(
+            focusNode: focusNode,
             enabled: !widget.disable,
             controller: textEditingController,
             inputFormatters: [
@@ -1225,6 +1288,9 @@ class ColorPickerInputState extends State<ColorPickerInput> {
                 inputColor = color.value;
               }
             },
+            onTapOutside: (event) {
+              focusNode.unfocus();
+            },
           ),
         ),
       ]),
@@ -1234,14 +1300,13 @@ class ColorPickerInputState extends State<ColorPickerInput> {
 
 /// 9 track types for slider picker widget.
 class ColorPickerSlider extends StatelessWidget {
-  const ColorPickerSlider(
-    this.trackType,
-    this.hsvColor,
-    this.onColorChanged, {
-    Key? key,
-    this.displayThumbColor = false,
-    this.fullThumbColor = false,
-  }) : super(key: key);
+  const ColorPickerSlider(this.trackType,
+      this.hsvColor,
+      this.onColorChanged, {
+        Key? key,
+        this.displayThumbColor = false,
+        this.fullThumbColor = false,
+      }) : super(key: key);
 
   final TrackType trackType;
   final HSVColor hsvColor;
@@ -1250,13 +1315,15 @@ class ColorPickerSlider extends StatelessWidget {
   final bool fullThumbColor;
 
   void slideEvent(RenderBox getBox, BoxConstraints box, Offset globalPosition) {
-    double localDx = getBox.globalToLocal(globalPosition).dx - 15.0;
+    double localDx = getBox
+        .globalToLocal(globalPosition)
+        .dx - 15.0;
     double progress =
         localDx.clamp(0.0, box.maxWidth - 30.0) / (box.maxWidth - 30.0);
     switch (trackType) {
       case TrackType.hue:
-        // 360 is the same as zero
-        // if set to 360, sliding to end goes to zero
+      // 360 is the same as zero
+      // if set to 360, sliding to end goes to zero
         onColorChanged(hsvColor.withHue(progress * 359));
         break;
       case TrackType.saturation:
@@ -1309,7 +1376,7 @@ class ColorPickerSlider extends StatelessWidget {
         case TrackType.saturationForHSL:
           thumbOffset += (box.maxWidth - 30.0) * hsvToHsl(hsvColor).saturation;
           thumbColor = HSLColor.fromAHSL(
-                  1.0, hsvColor.hue, hsvToHsl(hsvColor).saturation, 0.5)
+              1.0, hsvColor.hue, hsvToHsl(hsvColor).saturation, 0.5)
               .toColor();
           break;
         case TrackType.value:
@@ -1320,24 +1387,32 @@ class ColorPickerSlider extends StatelessWidget {
         case TrackType.lightness:
           thumbOffset += (box.maxWidth - 30.0) * hsvToHsl(hsvColor).lightness;
           thumbColor = HSLColor.fromAHSL(
-                  1.0, hsvColor.hue, 1.0, hsvToHsl(hsvColor).lightness)
+              1.0, hsvColor.hue, 1.0, hsvToHsl(hsvColor).lightness)
               .toColor();
           break;
         case TrackType.red:
-          thumbOffset += (box.maxWidth - 30.0) * hsvColor.toColor().red / 0xff;
+          thumbOffset += (box.maxWidth - 30.0) * hsvColor
+              .toColor()
+              .red / 0xff;
           thumbColor = hsvColor.toColor().withOpacity(1.0);
           break;
         case TrackType.green:
           thumbOffset +=
-              (box.maxWidth - 30.0) * hsvColor.toColor().green / 0xff;
+              (box.maxWidth - 30.0) * hsvColor
+                  .toColor()
+                  .green / 0xff;
           thumbColor = hsvColor.toColor().withOpacity(1.0);
           break;
         case TrackType.blue:
-          thumbOffset += (box.maxWidth - 30.0) * hsvColor.toColor().blue / 0xff;
+          thumbOffset += (box.maxWidth - 30.0) * hsvColor
+              .toColor()
+              .blue / 0xff;
           thumbColor = hsvColor.toColor().withOpacity(1.0);
           break;
         case TrackType.alpha:
-          thumbOffset += (box.maxWidth - 30.0) * hsvColor.toColor().opacity;
+          thumbOffset += (box.maxWidth - 30.0) * hsvColor
+              .toColor()
+              .opacity;
           thumbColor = hsvColor.toColor().withOpacity(hsvColor.alpha);
           break;
       }
@@ -1351,9 +1426,9 @@ class ColorPickerSlider extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(50.0)),
               child: CustomPaint(
                   painter: TrackPainter(
-                trackType,
-                hsvColor,
-              )),
+                    trackType,
+                    hsvColor,
+                  )),
             ),
           ),
           LayoutId(
@@ -1374,10 +1449,12 @@ class ColorPickerSlider extends StatelessWidget {
               builder: (BuildContext context, BoxConstraints box) {
                 RenderBox? getBox = context.findRenderObject() as RenderBox?;
                 return GestureDetector(
-                  onPanDown: (DragDownDetails details) => getBox != null
+                  onPanDown: (DragDownDetails details) =>
+                  getBox != null
                       ? slideEvent(getBox, box, details.globalPosition)
                       : null,
-                  onPanUpdate: (DragUpdateDetails details) => getBox != null
+                  onPanUpdate: (DragUpdateDetails details) =>
+                  getBox != null
                       ? slideEvent(getBox, box, details.globalPosition)
                       : null,
                 );
@@ -1392,8 +1469,7 @@ class ColorPickerSlider extends StatelessWidget {
 
 /// Simple round color indicator.
 class ColorIndicator extends StatelessWidget {
-  const ColorIndicator(
-    this.hsvColor, {
+  const ColorIndicator(this.hsvColor, {
     Key? key,
     this.width = 50.0,
     this.height = 50.0,
@@ -1422,12 +1498,11 @@ class ColorIndicator extends StatelessWidget {
 
 /// Provide Rectangle & Circle 2 categories, 10 variations of palette widget.
 class ColorPickerArea extends StatelessWidget {
-  const ColorPickerArea(
-    this.hsvColor,
-    this.onColorChanged,
-    this.paletteType, {
-    Key? key,
-  }) : super(key: key);
+  const ColorPickerArea(this.hsvColor,
+      this.onColorChanged,
+      this.paletteType, {
+        Key? key,
+      }) : super(key: key);
 
   final HSVColor hsvColor;
   final ValueChanged<HSVColor> onColorChanged;
@@ -1495,8 +1570,8 @@ class ColorPickerArea extends StatelessWidget {
     onColorChanged(hsvColor.withHue(hue).withSaturation(radio));
   }
 
-  void _handleGesture(
-      Offset position, BuildContext context, double height, double width) {
+  void _handleGesture(Offset position, BuildContext context, double height,
+      double width) {
     RenderBox? getBox = context.findRenderObject() as RenderBox?;
     if (getBox == null) return;
 
@@ -1531,15 +1606,17 @@ class ColorPickerArea extends StatelessWidget {
         return RawGestureDetector(
           gestures: {
             _AlwaysWinPanGestureRecognizer:
-                GestureRecognizerFactoryWithHandlers<
-                    _AlwaysWinPanGestureRecognizer>(
-              () => _AlwaysWinPanGestureRecognizer(),
-              (_AlwaysWinPanGestureRecognizer instance) {
+            GestureRecognizerFactoryWithHandlers<
+                _AlwaysWinPanGestureRecognizer>(
+                  () => _AlwaysWinPanGestureRecognizer(),
+                  (_AlwaysWinPanGestureRecognizer instance) {
                 instance
-                  ..onDown = ((details) => _handleGesture(
-                      details.globalPosition, context, height, width))
-                  ..onUpdate = ((details) => _handleGesture(
-                      details.globalPosition, context, height, width));
+                  ..onDown = ((details) =>
+                      _handleGesture(
+                          details.globalPosition, context, height, width))
+                  ..onUpdate = ((details) =>
+                      _handleGesture(
+                          details.globalPosition, context, height, width));
               },
             ),
           },
@@ -1562,11 +1639,11 @@ class ColorPickerArea extends StatelessWidget {
                 case PaletteType.hslWithSaturation:
                   return CustomPaint(
                       painter:
-                          HSLWithSaturationColorPainter(hsvToHsl(hsvColor)));
+                      HSLWithSaturationColorPainter(hsvToHsl(hsvColor)));
                 case PaletteType.hslWithLightness:
                   return CustomPaint(
                       painter:
-                          HSLWithLightnessColorPainter(hsvToHsl(hsvColor)));
+                      HSLWithLightnessColorPainter(hsvToHsl(hsvColor)));
                 case PaletteType.rgbWithRed:
                   return CustomPaint(
                       painter: RGBWithRedColorPainter(hsvColor.toColor()));
@@ -1591,21 +1668,20 @@ class ColorPickerArea extends StatelessWidget {
 
 /// Provide Hue Ring with HSV Rectangle of palette widget.
 class ColorPickerHueRing extends StatelessWidget {
-  const ColorPickerHueRing(
-    this.hsvColor,
-    this.onColorChanged, {
-    Key? key,
-    this.displayThumbColor = true,
-    this.strokeWidth = 5.0,
-  }) : super(key: key);
+  const ColorPickerHueRing(this.hsvColor,
+      this.onColorChanged, {
+        Key? key,
+        this.displayThumbColor = true,
+        this.strokeWidth = 5.0,
+      }) : super(key: key);
 
   final HSVColor hsvColor;
   final ValueChanged<HSVColor> onColorChanged;
   final bool displayThumbColor;
   final double strokeWidth;
 
-  void _handleGesture(
-      Offset position, BuildContext context, double height, double width) {
+  void _handleGesture(Offset position, BuildContext context, double height,
+      double width) {
     RenderBox? getBox = context.findRenderObject() as RenderBox?;
     if (getBox == null) return;
 
@@ -1637,15 +1713,17 @@ class ColorPickerHueRing extends StatelessWidget {
         return RawGestureDetector(
           gestures: {
             _AlwaysWinPanGestureRecognizer:
-                GestureRecognizerFactoryWithHandlers<
-                    _AlwaysWinPanGestureRecognizer>(
-              () => _AlwaysWinPanGestureRecognizer(),
-              (_AlwaysWinPanGestureRecognizer instance) {
+            GestureRecognizerFactoryWithHandlers<
+                _AlwaysWinPanGestureRecognizer>(
+                  () => _AlwaysWinPanGestureRecognizer(),
+                  (_AlwaysWinPanGestureRecognizer instance) {
                 instance
-                  ..onDown = ((details) => _handleGesture(
-                      details.globalPosition, context, height, width))
-                  ..onUpdate = ((details) => _handleGesture(
-                      details.globalPosition, context, height, width));
+                  ..onDown = ((details) =>
+                      _handleGesture(
+                          details.globalPosition, context, height, width))
+                  ..onUpdate = ((details) =>
+                      _handleGesture(
+                          details.globalPosition, context, height, width));
               },
             ),
           },

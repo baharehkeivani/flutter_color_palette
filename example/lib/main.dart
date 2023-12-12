@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_color_palette/flutter_color_palette.dart';
+import 'package:flutter_color_palette/flutter_color_picker.dart';
 
 void main() {
   runApp(const MyApp());
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
             enabled: false,
             child: StatefulBuilder(
               builder: (context, menuSetState) =>
-                  ColorPalette(
+                  MultiColorPicker(
                     colors: colorsList,gradientStyle: gradientStyle,
                     onChangeColors: (newColors) {
                       setState(() {

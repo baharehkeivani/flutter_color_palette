@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_color_palette/flutter_color_palette.dart';
+import 'package:flutter_color_palette/flutter_color_picker.dart';
 
-class ColorPalette extends StatefulWidget {
+class MultiColorPicker extends StatefulWidget {
   final void Function(List<Color>) onChangeColors;
   final void Function(GradientStyle)? onChangeStyle;
   final List<Color> colors;
   final GradientStyle? gradientStyle;
   final bool canBeGradient;
 
-  const ColorPalette({
+  const MultiColorPicker({
     Key? key,
     required this.colors,
     required this.onChangeColors,
@@ -18,10 +18,10 @@ class ColorPalette extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ColorPalette> createState() => _ColorPaletteState();
+  State<MultiColorPicker> createState() => _MultiColorPickerState();
 }
 
-class _ColorPaletteState extends State<ColorPalette> {
+class _MultiColorPickerState extends State<MultiColorPicker> {
   List<GradientStyle> styles = [
     GradientStyle(Alignment.topCenter, Alignment.bottomCenter), //transverse |
     GradientStyle(Alignment.topLeft, Alignment.bottomRight), // diagonal \
